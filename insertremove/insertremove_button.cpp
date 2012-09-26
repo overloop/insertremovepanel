@@ -194,14 +194,16 @@ void Button::placeButton()
 
     QTableView* _table = dynamic_cast<QTableView*>(this->parent());
     if (!_table)
+    {
+        setVisible(false);
         return ;
+    }
+
 
     if (_point.isNull())
     {
         QSize s = _table->viewport()->size();
-
-        qDebug() << s;
-
+        //qDebug() << s;
         _point = QPoint(s.width(),s.height());
     }
 

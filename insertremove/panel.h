@@ -23,15 +23,16 @@ public:
     ~Panel();
 
     void attach(QTableView* table);
+    void detach(QTableView* table);
 
     void setPolicy(Qt::Orientation orientation, PolicyFlags policy);
 
 protected:
-    void installFilter();
-    void createButtons(QObject* parent, InsertRemove::PolicyFlags horizontalPolicy, InsertRemove::PolicyFlags verticalPolicy);
+    void createButtons(InsertRemove::PolicyFlags horizontalPolicy, InsertRemove::PolicyFlags verticalPolicy);
     bool eventFilter(QObject *, QEvent *);
 
     Button* _buttons[4];
+    QTableView* _table;
 
 public slots:
     void placeButtons();
