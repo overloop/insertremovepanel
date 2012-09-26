@@ -12,6 +12,9 @@ namespace InsertRemove {
 
 class Button;
 
+/**
+  Panel tracks mouse move events on some QTableView and puts insert and remove buttons
+ */
 class Panel : public QObject
 {
     Q_OBJECT

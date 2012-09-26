@@ -25,8 +25,8 @@ int main(int argc, char** argv)
     view.setModel(&model);
 
     Panel panel(EverythingAllowed,EverythingAllowed);
-    panel.attach(&view);
     panel.setPolicy(Qt::Horizontal, (PolicyFlags) RemoveAllowed | AppendAllowed );
+    panel.attach(&view);
 
     view.show();
     resize(&view,600,400);

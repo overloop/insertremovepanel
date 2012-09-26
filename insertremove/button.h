@@ -11,6 +11,9 @@ class QAbstractScrollArea;
 
 namespace InsertRemove {
 
+/**
+ Button that adds or removes column or row on QAbstractItemModel that displayed on QTableView
+ */
 class Button : public QPushButton
 {
     Q_OBJECT
@@ -32,7 +35,6 @@ protected:
     int _modelIndex;
     QPoint _point;
     PolicyFlags _policy;
-    /*QTableView* _table;*/
 
 public slots:
     void placeButton();

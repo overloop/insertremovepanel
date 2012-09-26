@@ -5,11 +5,17 @@
 
 namespace InsertRemove {
 
+/**
+ Button type
+ */
 enum Type {
     Insert,
     Remove
 };
 
+/**
+ Insert and remove policy applicable to dimension (horizontal | vertical)
+ */
 enum PolicyFlag {
     NothingAllowed = 0x0,
     RemoveAllowed  = 0x1,

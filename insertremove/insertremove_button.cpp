@@ -35,7 +35,6 @@ Button::Button(Qt::Orientation orientation, InsertRemove::Type type, PolicyFlags
 
     setFixedSize(SIZE_PX,SIZE_PX);
     placeButton();
-
     connect(this,SIGNAL(clicked()),this,SLOT(on_clicked()));
 }
 

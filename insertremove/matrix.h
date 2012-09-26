@@ -6,6 +6,9 @@
 
 namespace InsertRemove {
 
+/**
+  Just another implementation of 2d array
+ */
 template<class T>
 class Matrix : public QVector< QVector<T> >
 {
@@ -138,6 +141,9 @@ private:
     int _rows,_cols;
 };
 
+/**
+  Just another implementation of 2d array of variant
+ */
 class VariantMatrix : public Matrix<QVariant>
 {
 public:

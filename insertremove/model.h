@@ -1,12 +1,15 @@
-
 #ifndef INSERTREMOVE_MODEL_H
 #define INSERTREMOVE_MODEL_H
+
 
 #include <QAbstractTableModel>
 #include "insertremove/matrix.h"
 
 namespace InsertRemove {
 
+/**
+  Model that allows to insert and remove rows and columns (demo)
+ */
 class Model : public QAbstractTableModel
 {
     Q_OBJECT

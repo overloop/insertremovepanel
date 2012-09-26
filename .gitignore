@@ -3,3 +3,4 @@ release
 *.pro.user
 *~
 Makefile*
+*.autosave
