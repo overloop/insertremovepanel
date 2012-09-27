@@ -21,7 +21,6 @@
 
 #include <QTableView>
 
-#include "insertremove/insertremove.h"
 #include "insertremove/matrix.h"
 #include "insertremove/model.h"
 #include "insertremove/panel.h"
