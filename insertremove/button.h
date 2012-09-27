@@ -45,7 +45,7 @@ public:
 protected:
 
     /**
-      QSize -> (int x, int y) or (int x, int y), QPoint -> (int x, int y) or (int x, int y), according to orientation
+      QSize -> (int x, int y) or (int y, int x), QPoint -> (int x, int y) or (int y, int x), according to orientation
      */
     virtual void getSizes(QTableView* table, QAbstractItemModel* model, int* m, int* n, int* btn1, int* btn2, int* pnt1, int* pnt2, int* ofs1, int* ofs2) const;
     virtual void nearestBorder(int policy, int pos, int sizes[], int count, int* n, int* coord) const;

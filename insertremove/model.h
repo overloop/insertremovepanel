@@ -21,8 +21,8 @@
 #ifndef INSERTREMOVE_MODEL_H
 #define INSERTREMOVE_MODEL_H
 
-
 #include <QAbstractTableModel>
+
 #include "insertremove/matrix.h"
 
 namespace InsertRemove {

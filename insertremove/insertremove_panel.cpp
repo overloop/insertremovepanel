@@ -18,15 +18,13 @@
 
 */
 
-#include "insertremove/panel.h"
-#include "insertremove/insertremove.h"
-#include "insertremove/button.h"
-
 #include <QMouseEvent>
-
 #include <QTableView>
 #include <QHeaderView>
 #include <QDebug>
+
+#include "insertremove/panel.h"
+#include "insertremove/button.h"
 
 namespace InsertRemove {
 
@@ -111,7 +109,8 @@ bool Panel::eventFilter(QObject* object, QEvent* event)
     if (event->type() == QEvent::MouseMove && object == _table->viewport())
     {
         QMouseEvent* mouseEvent = dynamic_cast<QMouseEvent*>(event);
-        if (!mouseEvent) return false;
+        if (!mouseEvent)
+            return false;
         for (int i=0;i<4;i++)
             _buttons[i]->setPoint(mouseEvent->pos());
     }

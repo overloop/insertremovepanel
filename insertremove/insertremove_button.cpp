@@ -18,15 +18,13 @@
 
 */
 
-#include "insertremove/button.h"
-
 #include <QAbstractItemModel>
 #include <QTableView>
 #include <QHeaderView>
 #include <QScrollBar>
 #include <QDebug>
 
-#include "insertremove/insertremove.h"
+#include "insertremove/button.h"
 
 namespace InsertRemove {
 
@@ -211,8 +209,8 @@ void Button::placeButton()
     //QTableView* table = dynamic_cast<QTableView*>(parent());
     //Q_ASSERT(table!=0);
 
-    QTableView* _table = dynamic_cast<QTableView*>(this->parent());
-    if (!_table)
+    QTableView* table = dynamic_cast<QTableView*>(this->parent());
+    if (!table)
     {
         setVisible(false);
         return ;
@@ -221,16 +219,16 @@ void Button::placeButton()
 
     if (_point.isNull())
     {
-        QSize s = _table->viewport()->size();
+        QSize s = table->viewport()->size();
         //qDebug() << s;
         _point = QPoint(s.width(),s.height());
     }
 
-    QAbstractItemModel* model = _table->model();
+    QAbstractItemModel* model = table->model();
     if (!model) return;
 
     int n,m,bsize1,bsize2,offset1,offset2,point1,point2;
-    getSizes(_table,model,&m,&n,&bsize1,&bsize2,&point1,&point2,&offset1,&offset2);
+    getSizes(table,model,&m,&n,&bsize1,&bsize2,&point1,&point2,&offset1,&offset2);
 
     int coord1;
     int coord2 = 0;
@@ -238,28 +236,29 @@ void Button::placeButton()
     int sizes[m];
     if (_orientation == Qt::Horizontal)
     {
-        for (int i=0;i<m;i++) sizes[i] = _table->columnWidth(i);
-        for (int i=0;i<n;i++) coord2 += _table->rowHeight(i);
+        for (int i=0;i<m;i++)
+            sizes[i] = table->columnWidth(i);
+        for (int i=0;i<n;i++)
+            coord2 += table->rowHeight(i);
     }
     else
     {
-        for (int i=0;i<m;i++) sizes[i] = _table->rowHeight(i);
-        for (int i=0;i<n;i++) coord2 += _table->columnWidth(i);
+        for (int i=0;i<m;i++)
+            sizes[i] = table->rowHeight(i);
+        for (int i=0;i<n;i++)
+            coord2 += table->columnWidth(i);
     }
 
     if (_type == InsertRemove::Insert)
-    {
         nearestBorder(_policy,point1+offset1,sizes,m,&_modelIndex,&coord1);
-    }
     else // _type == InsertRemove::Remove
-    {
         nearestMiddle(_policy,point1+offset1,sizes,m,&_modelIndex,&coord1);
-    }
+
 
     coord1 -= bsize1 / 2;
 
-    QSize vp = usefulWidgetSize(_table);
-    QPoint sh = _table->viewport()->mapToParent(QPoint(0,0)); //насколько viewport меньше table
+    QSize vp = usefulWidgetSize(table);
+    QPoint sh = table->viewport()->mapToParent(QPoint(0,0)); //насколько viewport меньше table
 
     if (_orientation == Qt::Horizontal)
     {
@@ -274,12 +273,12 @@ void Button::placeButton()
 
     if (_orientation == Qt::Horizontal)
     {
-        QPoint p = _table->viewport()->mapToParent(QPoint(coord1 - offset1,coord2 - offset2));
+        QPoint p = table->viewport()->mapToParent(QPoint(coord1 - offset1,coord2 - offset2));
         setGeometry(QRect(p,size()));
     }
     else
     {
-        QPoint p = _table->viewport()->mapToParent(QPoint(coord2 - offset2,coord1 - offset1));
+        QPoint p = table->viewport()->mapToParent(QPoint(coord2 - offset2,coord1 - offset1));
         setGeometry(QRect(p,size()));
     }
 
@@ -319,35 +318,27 @@ void Button::setPoint(const QPoint& point)
 
 void Button::on_clicked()
 {
-    QTableView* _table = dynamic_cast<QTableView*>(this->parent());
-    if (!_table)
-        return ;
+    QTableView* table = dynamic_cast<QTableView*>(this->parent());
+    if (!table)
+        return;
 
-    QAbstractItemModel* model = _table->model();
-    if (!model) return;
+    QAbstractItemModel* model = table->model();
+    if (!model)
+        return;
 
     if (_type == InsertRemove::Insert)
     {
         if (_orientation == Qt::Horizontal)
-        {
             model->insertColumn(_modelIndex);
-        }
         else
-        {
             model->insertRow(_modelIndex);
-        }
     }
-    else
+    else // _type == InsertRemove::Remove
     {
-        //remove
         if (_orientation == Qt::Horizontal)
-        {
             model->removeColumn(_modelIndex);
-        }
         else
-        {
             model->removeRow(_modelIndex);
-        }
     }
 }
 

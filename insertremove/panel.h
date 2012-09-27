@@ -49,7 +49,7 @@ public:
 
 protected:
     void createButtons(InsertRemove::PolicyFlags horizontalPolicy, InsertRemove::PolicyFlags verticalPolicy);
-    bool eventFilter(QObject *, QEvent *);
+    bool eventFilter(QObject* object, QEvent* event);
 
     Button* _buttons[4];
     QTableView* _table;
