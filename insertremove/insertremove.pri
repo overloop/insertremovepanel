@@ -1,3 +1,5 @@
+CONFIG += rtti
+
 SOURCES += \
     insertremove/insertremove_panel.cpp \
     insertremove/insertremove_button.cpp \
@@ -5,15 +7,15 @@ SOURCES += \
     insertremove/insertremove_model.cpp
 
 HEADERS += \
-    insertremove/panel.h \
-    insertremove/button.h \
     insertremove/insertremove.h \
-    insertremove/matrix.h \
-    insertremove/model.h
+    insertremove/insertremove_button.h \
+    insertremove/insertremove_panel.h \
+    insertremove/insertremove_model.h \
+    insertremove/insertremove_matrix.h
 
 INCLUDEPATH += \
     .
 
 RESOURCES += \
-    insertremove/icons.qrc
+    insertremove/insertremove_icons.qrc
 

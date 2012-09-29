@@ -36,12 +36,14 @@ Model::Model(const VariantMatrix& matrix, QObject* parent /*= 0*/) : QAbstractTa
 QModelIndex Model::index(int row, int column,
                           const QModelIndex &parent /*= QModelIndex()*/) const
 {
+    Q_UNUSED(parent)
     return createIndex(row,column);
 }
 
 /*virtual*/
 QModelIndex Model::parent(const QModelIndex &child) const
 {
+    Q_UNUSED(child)
     return QModelIndex();
 }
 
@@ -98,6 +100,7 @@ bool Model::insertColumns(int column, int count, const QModelIndex &parent /*= Q
 QVariant Model::headerData(int section, Qt::Orientation orientation,
                             int role /*= Qt::DisplayRole*/) const
 {
+    Q_UNUSED(orientation)
     if (role == Qt::DisplayRole)
         return section + 1;
     return QVariant();
@@ -110,6 +113,7 @@ bool Model::removeRows(int row, int count, const QModelIndex &parent /*= QModelI
     for (int i=0;i<count;i++)
         _data.removeRow(row);
     endRemoveRows();
+    return true;
 }
 
 /*virtual*/
@@ -137,6 +141,7 @@ bool Model::setData(const QModelIndex &index, const QVariant &value, int role /*
 /*virtual*/
 Qt::ItemFlags Model::flags(const QModelIndex &index) const
 {
+    Q_UNUSED(index)
     return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
