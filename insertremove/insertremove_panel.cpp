@@ -108,7 +108,7 @@ bool Panel::eventFilter(QObject* object, QEvent* event)
 {
     if (event->type() == QEvent::MouseMove && object == _table->viewport())
     {
-        QMouseEvent* mouseEvent = dynamic_cast<QMouseEvent*>(event);
+        QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
         if (!mouseEvent)
             return false;
         for (int i=0;i<4;i++)

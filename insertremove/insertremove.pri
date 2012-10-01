@@ -1,5 +1,3 @@
-CONFIG += rtti
-
 SOURCES += \
     insertremove/insertremove_panel.cpp \
     insertremove/insertremove_button.cpp \

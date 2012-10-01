@@ -206,16 +206,12 @@ void Button::nearestMiddle(int policy, int pos, int sizes[], int count, int* n, 
 
 void Button::placeButton()
 {
-    //QTableView* table = dynamic_cast<QTableView*>(parent());
-    //Q_ASSERT(table!=0);
-
-    QTableView* table = dynamic_cast<QTableView*>(this->parent());
+    QTableView* table = qobject_cast<QTableView*>(this->parent());
     if (!table)
     {
         setVisible(false);
         return ;
     }
-
 
     if (_point.isNull())
     {
@@ -225,7 +221,8 @@ void Button::placeButton()
     }
 
     QAbstractItemModel* model = table->model();
-    if (!model) return;
+    if (!model)
+        return;
 
     int n,m,bsize1,bsize2,offset1,offset2,point1,point2;
     getSizes(table,model,&m,&n,&bsize1,&bsize2,&point1,&point2,&offset1,&offset2);
@@ -318,7 +315,7 @@ void Button::setPoint(const QPoint& point)
 
 void Button::on_clicked()
 {
-    QTableView* table = dynamic_cast<QTableView*>(this->parent());
+    QTableView* table = qobject_cast<QTableView*>(this->parent());
     if (!table)
         return;
 
